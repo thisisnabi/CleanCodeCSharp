@@ -6,4 +6,4 @@ using CleanCodeCSharp.Example;
 
 
 // aggregate vs string.join in array string
-BenchmarkRunner.Run<AggregateVsJoinString>();
+BenchmarkRunner.Run<EmailValidation>();
