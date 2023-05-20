@@ -2,7 +2,8 @@
 using BenchmarkDotNet.Columns;
 using BenchmarkDotNet.Jobs;
 using BenchmarkDotNet.Order;
- 
+using System.Text;
+
 namespace CleanCodeCSharp.Example;
 
 [MemoryDiagnoser]
@@ -33,6 +34,14 @@ public class AggregateVsJoinString
         string dataString = listOfString.Aggregate((current, next) => current + "," + next)
                                             .ToString();
     }
+
+    [Benchmark()]
+    public void Aggregate_StringBuilder()
+    {
+        string dataString = listOfString.Aggregate(new StringBuilder(),(current, next) => current.Append(",").Append(next))
+                                            .ToString();
+    }
+
 
     [Benchmark()]
     public void StringJoin()
