@@ -22,6 +22,14 @@ namespace CleanCodeCSharp.Example
         }
 
         [Benchmark()]
+        public bool CheckEmail_Regex_Compiled()
+        {
+            // RFC 2822  compliant regex
+            var validateEmailRegex = new Regex(@"^[a-zA-Z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-zA-Z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-zA-Z0-9](?:[a-zA-Z0-9-]*[a-zA-Z0-9])?\.)+[a-zA-Z]{2,}$", RegexOptions.Compiled);
+
+            return validateEmailRegex.IsMatch("thisisnabi@outlook.com");
+        }
+        [Benchmark()]
 
         // RFC 2822 compliant regex
         public bool CheckEmail_MailAddress() =>
